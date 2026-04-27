@@ -2,52 +2,54 @@
 <html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
-    <title>CSS 圖片樣式練習</title>
+    <title>CSS 圖片樣式練習 - 修正版</title>
     <style>
         body {
             display: flex;
             align-items: center;
             justify-content: space-around;
             padding: 20px;
+            background-color: #fff;
         }
 
-        /* 共通樣式：讓圖片易於觀察 */
-        img {
-            background-color: #f0f0f0;
+        /* 統一設定左右兩側圖片的容器尺寸 */
+        .img-box {
+            width: 33%;
+            height: 300px;
         }
 
-        /* 左側圖片：33% 寬度、18px 圓角、無失真 */
+        /* 左側圖片：不失真 (使用 object-fit: cover) */
         .img-left {
             width: 33%;
+            height: 300px;
             border-radius: 18px;
-            /* 預設寬度 33% 不設高度，瀏覽器會按比例縮放，不會失真 */
+            object-fit: cover; /* 關鍵：裁切並保持比例，不失真 */
         }
 
-        /* 中間圖片：150px 圓形、無失真 */
+        /* 中間圖片：圓形、固定 150px、不失真 */
         .img-center {
             width: 150px;
             height: 150px;
-            border-radius: 50%; /* 寬高相同時 50% 會變成正圓 */
+            border-radius: 50%;
             border: 1px solid #000;
-            /* object-fit: cover 是關鍵，防止在固定寬高下圖片被壓扁 */
-            object-fit: cover; 
+            object-fit: cover;
         }
 
-        /* 右側圖片：33% 寬度、300px 高度、失真 */
+        /* 右側圖片：失真 (預設行為或使用 object-fit: fill) */
         .img-right {
             width: 33%;
             height: 300px;
-            /* 強制設定不符比例的寬高且不使用 object-fit，圖片會產生失真 (distortion) */
+            object-fit: fill; /* 關鍵：強制拉伸填滿，會導致失真 */
         }
     </style>
 </head>
 <body>
 
-    <img src="https://picsum.photos/id/1011/600/800" alt="Eiffel Tower" class="img-left">
+    <img src="https://picsum.photos/id/1011/600/800" alt="Left Image" class="img-left">
 
-    <img src="https://picsum.photos/id/1015/400/400" alt="Scenery" class="img-center">
+    <img src="https://picsum.photos/id/1015/400/400" alt="Center Image" class="img-center">
 
-    <img src="https://picsum.photos/id/1011/600/800" alt="Eiffel Tower" class="img-right">
+    <img src="https://picsum.photos/id/1011/600/800" alt="Right Image" class="img-right">
 
 </body>
 </html>
